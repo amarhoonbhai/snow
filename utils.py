@@ -1,13 +1,20 @@
+import os
 from tinydb import TinyDB, Query
 
-ACCOUNTS_DB_PATH = "../spinauth/accounts.json"
-accounts_db = TinyDB(ACCOUNTS_DB_PATH)
+DB_PATH = os.path.join(os.path.dirname(__file__), "spinauth", "accounts.json")
+os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+
+accounts_db = TinyDB(DB_PATH)
 
 def get_user_sessions(user_id: int):
-    """
-    Retrieve all sessions/accounts linked to this user_id.
-    Returns a list of dicts (TinyDB rows).
-    """
+    """Fetch sessions for a given user id"""
     User = Query()
-    results = accounts_db.search(User.user_id == user_id)
-    return results or []
+    return accounts_db.search(User.user_id == user_id)
+
+def update_user_session(user_id: int, account_name: str, username: str):
+    """Insert/Update user session"""
+    User = Query()
+    accounts_db.upsert(
+        {"user_id": user_id, "account_name": account_name, "username": username},
+        User.user_id == user_id
+    )

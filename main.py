@@ -27,17 +27,12 @@ dp.include_router(broadcast_router)
 @dp.message(Command("start"))
 async def start_handler(message: Message):
     await message.answer(
-        "👋 Welcome to Spinify Ads Main Bot!
-
-"
-        "Use /accounts to view your connected accounts.
-"
-        "Use /add_group, /set_ad, /set_interval to configure.
-"
-        "Use /start_ads to begin automated sending.
-"
-        "Use /stop_ads to pause it."
-    )
+    "👋 Welcome to Spinify Ads Main Bot!\n\n"
+    "Use /accounts to view your connected accounts.\n"
+    "Use /add_group, /set_ad, /set_interval to configure.\n"
+    "Use /start_ads to begin automated sending.\n"
+    "Use /stop_ads to pause it."
+)
 
 @dp.message(Command("accounts"))
 async def accounts_handler(message: Message):

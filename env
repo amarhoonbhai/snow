@@ -1,0 +1,3 @@
+BOT_TOKEN=1234567890:ABC-DEF...
+ACCOUNTS_DB_PATH=../spinauth/accounts.json
+USER_DATA_DB=user_data.json

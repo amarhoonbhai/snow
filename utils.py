@@ -1,10 +1,9 @@
 import os
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 
-ACCOUNTS_DB_PATH = os.getenv("ACCOUNTS_DB_PATH", "../spinauth/accounts.json")
+ACCOUNTS_DB_PATH = "../spinauth/accounts.json"
+
+# Ensure directory exists
+os.makedirs(os.path.dirname(ACCOUNTS_DB_PATH), exist_ok=True)
+
 accounts_db = TinyDB(ACCOUNTS_DB_PATH)
-accounts_table = accounts_db.table("accounts")
-
-def get_user_sessions(user_id):
-    Account = Query()
-    return accounts_table.search(Account.user_id == user_id)
